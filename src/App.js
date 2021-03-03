@@ -3,7 +3,7 @@ import './index.css';
 import {BrowserRouter, Route, Link, NavLink} from 'react-router-dom';
 import SearchBar from './components/SearchBar';
 import PhotoContainer from './components/PhotoContainer';
-//import Nav from './components/Nav';
+import Nav from './components/Nav';
 import apiKey from './config.js';
 
 class App extends React.Component {
@@ -64,16 +64,13 @@ class App extends React.Component {
         }))
     }
 
-    
-
-
-    
 
   render(){
     return(
       <BrowserRouter>
       <div className="container">
       <SearchBar searchFor={this.searchFor.bind(this)}/>
+      <Nav searchFor={this.searchFor.bind(this)}/>
       </div>
       <PhotoContainer photos={this.state.photos}/>
       </BrowserRouter>
