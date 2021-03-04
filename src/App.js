@@ -1,10 +1,18 @@
+//dependencies
 import React from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+//static files
 import './index.css';
-import {BrowserRouter, Route, Link, NavLink} from 'react-router-dom';
+import apiKey from './config.js';
+
+//components
 import SearchBar from './components/SearchBar';
 import PhotoContainer from './components/PhotoContainer';
 import Nav from './components/Nav';
-import apiKey from './config.js';
+import NotFound from './components/NotFound';
+import Home from './components/Home';
+
 
 class App extends React.Component {
     constructor(){
@@ -16,7 +24,7 @@ class App extends React.Component {
     }
 
     /*** 
-     * sets the new search term and stores it in state
+     * takes the new search term and stores it in state
      ****/
 
     searchFor = async (searchTerm) => {
@@ -72,7 +80,13 @@ class App extends React.Component {
       <SearchBar searchFor={this.searchFor.bind(this)}/>
       <Nav searchFor={this.searchFor.bind(this)}/>
       </div>
-      <PhotoContainer photos={this.state.photos}/>
+      <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route exact path='/search/forest' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
+      <Route exact path='/search/ocean' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
+      <Route exact path='/search/mountains' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
+      <Route component={NotFound}/>
+      </Switch>
       </BrowserRouter>
     ) 
   }

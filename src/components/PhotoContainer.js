@@ -4,7 +4,7 @@
 function PhotoContainer(props){
     return (
      <div className="photo-container">
-        <h2>Results</h2>
+        <h2>Results for {props.search}</h2>
         <ul>
           {props.photos.map(photo => <li key={photo.key}><img src={photo.url} alt={photo.title}/></li>)}
         </ul>

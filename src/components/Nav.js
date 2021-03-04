@@ -9,7 +9,7 @@ function Nav(props){
         <nav className="main-nav">
         <ul>
           <li><NavLink to="/search/ocean" onClick={()=> props.searchFor("ocean")}>ocean</NavLink></li>
-          <li><NavLink to="/search/forrest" onClick={()=> props.searchFor("forrest")}>forrest</NavLink></li>
+          <li><NavLink to="/search/forest" onClick={()=> props.searchFor("forest")}>forest</NavLink></li>
           <li><NavLink to="/search/mountains" onClick={()=> props.searchFor("mountains")}>mountains</NavLink></li>
         </ul>
       </nav>
