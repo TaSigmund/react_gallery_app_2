@@ -1,24 +1,29 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
 class SearchBar extends React.Component{
-    constructor(){
+    constructor({history}){
         super();
         this.state = {
-          searchFor: []
+          searchFor: ''
         }
       }
 
+    
     /*** 
      * passes the search field text to state
      ***/
+
     onChange = (e) => {this.setState({searchFor: e.target.value});}
 
     /*** 
      * passes the text in state up to the App component and clears the text field again
      ***/
+
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.searchFor(this.state.searchFor);
-        this.setState({ searchFor: [] });
+        this.props.searchFor(this.state.searchFor); //starts the search using the function in App.js
+        this.props.history.push(`/search/${this.state.searchFor}`); //sends the url to the browser
+        this.setState({ searchFor: '' }); //resets state
     }
 
     render(){
@@ -31,6 +36,7 @@ class SearchBar extends React.Component{
             value ={this.state.searchFor}
             onChange = {this.onChange}
             required="required"
+            //ref = {(input)=> this.search = input}
         />
         <button type="submit" className="search-button">
           <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -44,5 +50,5 @@ class SearchBar extends React.Component{
     
 }
 
-export default SearchBar
+export default withRouter(SearchBar)
 

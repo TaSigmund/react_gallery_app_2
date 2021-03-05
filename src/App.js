@@ -85,6 +85,7 @@ class App extends React.Component {
       <Route exact path='/search/forest' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
       <Route exact path='/search/ocean' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
       <Route exact path='/search/mountains' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
+      <Route path='/search/:search' render={() =>  <PhotoContainer photos={this.state.photos} search={this.state.search}/>}/>
       <Route component={NotFound}/>
       </Switch>
       </BrowserRouter>
