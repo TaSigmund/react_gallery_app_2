@@ -44,11 +44,15 @@ class App extends React.Component {
       /* the following line is the flickr endpoint that delivers a defined amount of pictures matching a tag */
       let flickrAPI = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${tag}&per_page=${amountOfPictures}&page=1&format=json&nojsoncallback=1`;
       
-    fetch(flickrAPI)
-        .then(data => data.json())
-        .then(data => this.newObjectInState(data))
-        .then(()=>{this.props.history.push(`/search/${tag}`)})
-        .then(()=>{console.log(this.props.history)})
+      /* makes sure loading is set to true even if it has previously been set to false (after a completed search)*/
+      this.setState({
+        loading: true
+      })
+
+      fetch(flickrAPI)
+          .then(data => data.json())
+          .then(data => this.newObjectInState(data))
+          .then(()=>{this.props.history.push(`/search/${tag}`)})
     }
 
     /*** 
