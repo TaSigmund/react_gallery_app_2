@@ -1,14 +1,17 @@
+//dependencies
 import React from 'react';
-import {withRouter} from 'react-router-dom'
+
+/*** 
+ SEARCH FIELD AND BUTTON
+****/
 class SearchBar extends React.Component{
-    constructor({history}){
+    constructor(){
         super();
         this.state = {
           searchFor: ''
         }
       }
 
-    
     /*** 
      * passes the search field text to state
      ***/
@@ -21,8 +24,7 @@ class SearchBar extends React.Component{
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.searchFor(this.state.searchFor); //starts the search using the function in App.js
-        this.props.history.push(`/search/${this.state.searchFor}`); //sends the url to the browser
+        this.props.performSearch(this.state.searchFor); //starts the search using the function in App.js
         this.setState({ searchFor: '' }); //resets state
     }
 
@@ -36,7 +38,6 @@ class SearchBar extends React.Component{
             value ={this.state.searchFor}
             onChange = {this.onChange}
             required="required"
-            //ref = {(input)=> this.search = input}
         />
         <button type="submit" className="search-button">
           <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -50,5 +51,5 @@ class SearchBar extends React.Component{
     
 }
 
-export default withRouter(SearchBar)
+export default SearchBar
 
