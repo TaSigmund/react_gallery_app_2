@@ -1,7 +1,6 @@
 //dependencies
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-
 /*** 
  SEARCH BUTTONS FOR "OCEAN", "FOREST" AND "MOUNTAIN"
 ****/

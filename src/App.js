@@ -2,6 +2,8 @@
 import React from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
 
+
+
 //static files
 import './index.css';
 import apiKey from './config.js';
@@ -17,14 +19,14 @@ import Home from './components/Home';
  MAIN COMPONENT
 ****/
 class App extends React.Component {
-    constructor(){
+    constructor({ match, location, history }){
       super()
       this.state = {
         photos: [],
         loading: true
       }
     }
-
+    
     /*** 
      * only starts a search in case someone pastes in a url that correctly uses the path '/search/:search'
      ****/
@@ -43,7 +45,7 @@ class App extends React.Component {
       let amountOfPictures = 24;
       /* the following line is the flickr endpoint that delivers a defined amount of pictures matching a tag */
       let flickrAPI = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${tag}&per_page=${amountOfPictures}&page=1&format=json&nojsoncallback=1`;
-      
+
       /* makes sure loading is set to true even if it has previously been set to false (after a completed search)*/
       this.setState({
         loading: true
@@ -102,6 +104,8 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+const AppWithRouter = withRouter(App);
+
+export default AppWithRouter
 
 
